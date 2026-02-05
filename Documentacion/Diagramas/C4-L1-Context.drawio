@@ -1,0 +1,117 @@
+<mxfile host="app.diagrams.net" modified="2026-02-04T00:00:00.000Z" agent="Claude" version="21.0.0">
+  <diagram name="C4-L1-Context" id="context">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;Diagrama de Contexto (C4 - Nivel 1)&lt;/b&gt;&lt;br&gt;Sistema LeapCode - Plataforma de Práctica de Programación" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="284.5" y="30" width="600" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Sistema Principal LeapCode -->
+        <mxCell id="system-leapcode" value="&lt;b&gt;LeapCode System&lt;/b&gt;&lt;br&gt;[Software System]&lt;br&gt;&lt;br&gt;Plataforma web para práctica de programación competitiva. Permite a usuarios resolver problemas de algoritmos, ejecutar código en Python y JavaScript, y validar soluciones automáticamente." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0D5EAF;fontColor=#FFFFFF;fontSize=12;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="434.5" y="320" width="300" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Usuario Estudiante -->
+        <mxCell id="user-student" value="&lt;b&gt;Estudiante / Practicante&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Usuario que practica programación competitiva, resuelve problemas de algoritmos y prepara entrevistas técnicas." style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="140" y="360" width="80" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Relación Usuario -> Sistema -->
+        <mxCell id="edge-student-system" value="Resuelve problemas,&lt;br&gt;ejecuta código,&lt;br&gt;valida soluciones&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;dashed=0;" edge="1" parent="1" source="user-student" target="system-leapcode">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Usuario Administrador -->
+        <mxCell id="user-admin" value="&lt;b&gt;Administrador&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Gestiona el catálogo de problemas, revisa métricas del sistema y modera contenido." style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="140" y="130" width="80" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Relación Admin -> Sistema -->
+        <mxCell id="edge-admin-system" value="Administra problemas,&lt;br&gt;monitorea sistema&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;dashed=0;" edge="1" parent="1" source="user-admin" target="system-leapcode">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="340" y="180" />
+              <mxPoint x="340" y="365" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Sistema Externo: Docker Registry -->
+        <mxCell id="external-docker" value="&lt;b&gt;Docker Hub&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;Repositorio de imágenes Docker oficiales para Python y Node.js usadas en ejecución de código." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="869" y="180" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Relación Sistema -> Docker Hub -->
+        <mxCell id="edge-system-docker" value="Descarga imágenes&lt;br&gt;Python/Node.js&lt;br&gt;[HTTPS/Docker API]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;dashed=1;" edge="1" parent="1" source="system-leapcode" target="external-docker">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="365" />
+              <mxPoint x="800" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Sistema Externo: CDN -->
+        <mxCell id="external-cdn" value="&lt;b&gt;CDN (Vercel)&lt;/b&gt;&lt;br&gt;[External System]&lt;br&gt;&lt;br&gt;Content Delivery Network que distribuye los assets estáticos del frontend globalmente." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="869" y="460" width="240" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Relación Sistema -> CDN -->
+        <mxCell id="edge-system-cdn" value="Deploy de frontend&lt;br&gt;React build&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;dashed=1;" edge="1" parent="1" source="system-leapcode" target="external-cdn">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="800" y="455" />
+              <mxPoint x="800" y="520" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Sistema Externo: Monitoring (Futuro) -->
+        <mxCell id="external-monitoring" value="&lt;b&gt;Sistema de Monitoreo&lt;/b&gt;&lt;br&gt;[External System - Futuro]&lt;br&gt;&lt;br&gt;Plataforma de observabilidad (ej: Datadog, New Relic) para métricas, logs y alertas." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="434.5" y="610" width="300" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Relación Sistema -> Monitoring -->
+        <mxCell id="edge-system-monitoring" value="Envía métricas,&lt;br&gt;logs, traces&lt;br&gt;[HTTPS/gRPC]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1" source="system-leapcode" target="external-monitoring">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="60" y="600" width="280" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="&lt;b&gt;LEYENDA&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="75" y="610" width="100" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-person" value="&lt;b&gt;Person&lt;/b&gt; - Usuario o actor del sistema" style="shape=umlActor;verticalLabelPosition=middle;verticalAlign=middle;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=10;labelPosition=right;align=left;" vertex="1" parent="1">
+          <mxGeometry x="80" y="640" width="30" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-system-internal" value="&lt;b&gt;Sistema Interno&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1168BD;strokeColor=#0D5EAF;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="690" width="130" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-system-external" value="&lt;b&gt;Sistema Externo&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="730" width="130" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Additional Info Box -->
+        <mxCell id="info-box" value="&lt;b&gt;Contexto del Sistema LeapCode&lt;/b&gt;&lt;br&gt;&lt;br&gt;Este diagrama muestra el sistema LeapCode en su contexto, identificando los usuarios principales (estudiantes y administradores) y los sistemas externos con los que interactúa.&lt;br&gt;&lt;br&gt;&lt;b&gt;Sistemas Externos:&lt;/b&gt;&lt;br&gt;• Docker Hub: Fuente de imágenes para ejecución aislada&lt;br&gt;• CDN (Vercel): Distribución global del frontend&lt;br&gt;• Monitoreo (futuro): Observabilidad del sistema" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF4E6;strokeColor=#F0AD4E;align=left;verticalAlign=top;fontSize=10;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="60" y="130" width="280" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Attributes Quality Box -->
+        <mxCell id="quality-box" value="&lt;b&gt;Atributos de Calidad Priorizados:&lt;/b&gt;&lt;br&gt;1. &lt;b&gt;Seguridad&lt;/b&gt;: Ejecución aislada de código&lt;br&gt;2. &lt;b&gt;Rendimiento&lt;/b&gt;: Respuesta &amp;lt;10s&lt;br&gt;3. &lt;b&gt;Escalabilidad&lt;/b&gt;: Diseño stateless&lt;br&gt;4. &lt;b&gt;Disponibilidad&lt;/b&gt;: Uptime 99%&lt;br&gt;5. &lt;b&gt;Usabilidad&lt;/b&gt;: UX intuitiva" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0277BD;align=left;verticalAlign=top;fontSize=10;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="869" y="30" width="240" height="120" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

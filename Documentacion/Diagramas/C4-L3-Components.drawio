@@ -1,0 +1,230 @@
+<mxfile host="app.diagrams.net" modified="2026-02-04T00:00:00.000Z" agent="Claude" version="21.0.0">
+  <diagram name="C4-L3-Components" id="components">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;Diagrama de Componentes (C4 - Nivel 3)&lt;/b&gt;&lt;br&gt;API Application (Flask Backend) - Componentes Internos" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="500" y="20" width="600" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Web Application (External) -->
+        <mxCell id="external-frontend" value="&lt;b&gt;Web Application&lt;/b&gt;&lt;br&gt;[Container: React SPA]&lt;br&gt;&lt;br&gt;Frontend que consume la API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="80" y="200" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Container Boundary -->
+        <mxCell id="container-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#438DD5;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="360" y="120" width="1160" height="800" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="container-label" value="&lt;b&gt;API Application (Flask Backend)&lt;/b&gt;&lt;br&gt;[Container: Flask]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#438DD5;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="380" y="130" width="300" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- REST API Controller Component -->
+        <mxCell id="component-controller" value="&lt;b&gt;REST API Controller&lt;/b&gt;&lt;br&gt;[Component: Flask Routes]&lt;br&gt;&lt;br&gt;Maneja requests HTTP y define endpoints:&lt;br&gt;• GET /api/problems&lt;br&gt;• GET /api/problems/:id&lt;br&gt;• POST /api/execute&lt;br&gt;• POST /api/submit&lt;br&gt;• GET /api/health&lt;br&gt;&lt;br&gt;Valida input, llama servicios,&lt;br&gt;formatea responses JSON" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="200" width="280" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- Problems Service Component -->
+        <mxCell id="component-problems-service" value="&lt;b&gt;Problems Service&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Gestiona lógica de problemas:&lt;br&gt;• Obtener lista de problemas&lt;br&gt;• Filtrar por dificultad/categoría&lt;br&gt;• Obtener detalles de problema&lt;br&gt;• Obtener test cases&lt;br&gt;• Proveer boilerplate code&lt;br&gt;&lt;br&gt;Actualmente usa datos en memoria,&lt;br&gt;futuro: integración con DB" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="200" width="280" height="220" as="geometry" />
+        </mxCell>
+
+        <!-- Code Execution Service Component -->
+        <mxCell id="component-execution-service" value="&lt;b&gt;Code Execution Service&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Orquesta ejecución de código:&lt;br&gt;• Valida código y lenguaje&lt;br&gt;• Crea contenedor Docker&lt;br&gt;• Escribe código en volumen temporal&lt;br&gt;• Ejecuta con timeout de 10s&lt;br&gt;• Captura stdout/stderr&lt;br&gt;• Destruye contenedor&lt;br&gt;• Retorna resultado o error&lt;br&gt;&lt;br&gt;Usa Docker SDK Python" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="480" width="280" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Solution Validator Component -->
+        <mxCell id="component-validator" value="&lt;b&gt;Solution Validator&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Valida soluciones de usuarios:&lt;br&gt;• Ejecuta código contra test cases&lt;br&gt;• Compara output esperado vs real&lt;br&gt;• Mide tiempo de ejecución&lt;br&gt;• Mide uso de memoria&lt;br&gt;• Genera veredicto (AC/WA/TLE/RE)&lt;br&gt;• Calcula percentiles&lt;br&gt;&lt;br&gt;Integra Execution Service y&lt;br&gt;Problems Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="480" width="280" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Docker Manager Component -->
+        <mxCell id="component-docker-manager" value="&lt;b&gt;Docker Manager&lt;/b&gt;&lt;br&gt;[Component: Python Class]&lt;br&gt;&lt;br&gt;Abstracción sobre Docker SDK:&lt;br&gt;• Crear/destruir contenedores&lt;br&gt;• Configurar límites de recursos&lt;br&gt;• Gestionar volúmenes temporales&lt;br&gt;• Aplicar configuración de seguridad&lt;br&gt;• Health checks de Docker Engine&lt;br&gt;• Logging de operaciones Docker" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="780" width="280" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Security Manager Component -->
+        <mxCell id="component-security" value="&lt;b&gt;Security Manager&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Validaciones de seguridad:&lt;br&gt;• Sanitizar código de entrada&lt;br&gt;• Rate limiting por IP/usuario&lt;br&gt;• Validar tamaño de código&lt;br&gt;• Detectar patrones maliciosos&lt;br&gt;• Logging de eventos de seguridad" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="200" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Configuration Manager Component -->
+        <mxCell id="component-config" value="&lt;b&gt;Configuration Manager&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Gestión de configuración:&lt;br&gt;• Variables de entorno&lt;br&gt;• Configuración Docker&lt;br&gt;• Timeouts y límites&lt;br&gt;• URLs y endpoints&lt;br&gt;• Feature flags" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="380" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Logger Component -->
+        <mxCell id="component-logger" value="&lt;b&gt;Logger&lt;/b&gt;&lt;br&gt;[Component: Python Module]&lt;br&gt;&lt;br&gt;Sistema de logging centralizado:&lt;br&gt;• Logs estructurados (JSON)&lt;br&gt;• Niveles: DEBUG, INFO, WARNING, ERROR&lt;br&gt;• Correlación de requests&lt;br&gt;• Rotación de archivos log&lt;br&gt;• Integración con sistemas externos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#85BBF0;strokeColor=#5D8FC1;fontColor=#000000;fontSize=10;align=left;verticalAlign=top;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="560" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Metrics Collector Component -->
+        <mxCell id="component-metrics" value="&lt;b&gt;Metrics Collector&lt;/b&gt;&lt;br&gt;[Component: Python Module - FUTURO]&lt;br&gt;&lt;br&gt;Recolección de métricas:&lt;br&gt;• Tiempos de respuesta API&lt;br&gt;• Tiempos de ejecución código&lt;br&gt;• Tasa de errores&lt;br&gt;• Uso de recursos contenedores&lt;br&gt;• Exportación a Prometheus" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#333333;fontSize=10;align=left;verticalAlign=top;spacing=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="740" width="280" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- External: Docker Engine -->
+        <mxCell id="external-docker" value="&lt;b&gt;Docker Engine&lt;/b&gt;&lt;br&gt;[External: Container Runtime]&lt;br&gt;&lt;br&gt;Motor de contenedores&lt;br&gt;para ejecución aislada" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="80" y="780" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- External: Database (Future) -->
+        <mxCell id="external-database" value="&lt;b&gt;Database&lt;/b&gt;&lt;br&gt;[External: PostgreSQL - FUTURO]&lt;br&gt;&lt;br&gt;Persistencia de datos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#333333;fontSize=11;align=center;verticalAlign=middle;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="620" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- Relationships -->
+        
+        <!-- Frontend -> Controller -->
+        <mxCell id="edge-frontend-controller" value="HTTP Requests&lt;br&gt;[JSON/HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="external-frontend" target="component-controller">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Controller -> Problems Service -->
+        <mxCell id="edge-controller-problems" value="Obtener problemas&lt;br&gt;y test cases&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;dashed=0;" edge="1" parent="1" source="component-controller" target="component-problems-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Controller -> Execution Service -->
+        <mxCell id="edge-controller-execution" value="Ejecutar código&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1" source="component-controller" target="component-execution-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Controller -> Validator -->
+        <mxCell id="edge-controller-validator" value="Validar solución&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1" source="component-controller" target="component-validator">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Execution Service -> Docker Manager -->
+        <mxCell id="edge-execution-docker-mgr" value="Crear/gestionar&lt;br&gt;contenedores&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1" source="component-execution-service" target="component-docker-manager">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Validator -> Execution Service -->
+        <mxCell id="edge-validator-execution" value="Ejecutar contra&lt;br&gt;test cases&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.75;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1" source="component-validator" target="component-execution-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Validator -> Problems Service -->
+        <mxCell id="edge-validator-problems" value="Obtener test cases&lt;br&gt;esperados&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1" source="component-validator" target="component-problems-service">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Docker Manager -> Docker Engine -->
+        <mxCell id="edge-docker-mgr-engine" value="Docker API calls&lt;br&gt;[Docker SDK]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="component-docker-manager" target="external-docker">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Problems Service -> Database (Future) -->
+        <mxCell id="edge-problems-database" value="CRUD operations&lt;br&gt;[SQL - FUTURO]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#666666;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1" source="component-problems-service" target="external-database">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="720" y="365" />
+              <mxPoint x="720" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Security -> Controller -->
+        <mxCell id="edge-security-controller" value="Validar input&lt;br&gt;[Function calls]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#E74C3C;strokeWidth=1.5;startArrow=classic;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1" source="component-security" target="component-controller">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- All components -> Logger -->
+        <mxCell id="edge-controller-logger" value="Log events" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=9;fontColor=#666666;strokeColor=#95A5A6;strokeWidth=1;dashed=1;" edge="1" parent="1" source="component-controller" target="component-logger">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="edge-execution-logger" value="Log" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=9;fontColor=#666666;strokeColor=#95A5A6;strokeWidth=1;dashed=1;" edge="1" parent="1" source="component-execution-service" target="component-logger">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="600" />
+              <mxPoint x="1060" y="630" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- All components -> Config -->
+        <mxCell id="edge-execution-config" value="Read config" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fontSize=9;fontColor=#666666;strokeColor=#95A5A6;strokeWidth=1;dashed=1;" edge="1" parent="1" source="component-execution-service" target="component-config">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="540" />
+              <mxPoint x="1080" y="485" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="80" y="360" width="200" height="220" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="&lt;b&gt;TIPOS DE COMUNICACIÓN&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="90" y="370" width="180" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-http" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="410" as="sourcePoint" />
+            <mxPoint x="160" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-http-label" value="HTTP External" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="170" y="400" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-internal" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#4A90E2;strokeWidth=1.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="440" as="sourcePoint" />
+            <mxPoint x="160" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-internal-label" value="Internal Calls" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="170" y="430" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-security" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#E74C3C;strokeWidth=1.5;startArrow=classic;startFill=1;endArrow=none;endFill=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="470" as="sourcePoint" />
+            <mxPoint x="160" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-security-label" value="Security Check" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="170" y="460" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-logging" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#95A5A6;strokeWidth=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="500" as="sourcePoint" />
+            <mxPoint x="160" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-logging-label" value="Logging/Config" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="170" y="490" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-future" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=10;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="100" y="530" as="sourcePoint" />
+            <mxPoint x="160" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend-future-label" value="Future Feature" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="170" y="520" width="90" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Component Responsibilities Box -->
+        <mxCell id="responsibilities-box" value="&lt;b&gt;RESPONSABILIDADES CLAVE&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Controller:&lt;/b&gt; Routing y validación HTTP&lt;br&gt;&lt;br&gt;&lt;b&gt;Execution Service:&lt;/b&gt; Orquestar ejecución en Docker&lt;br&gt;&lt;br&gt;&lt;b&gt;Validator:&lt;/b&gt; Verificar corrección de soluciones&lt;br&gt;&lt;br&gt;&lt;b&gt;Docker Manager:&lt;/b&gt; Abstracción de Docker SDK&lt;br&gt;&lt;br&gt;&lt;b&gt;Security:&lt;/b&gt; Prevención de ataques" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0277BD;align=left;verticalAlign=top;fontSize=9;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="760" y="770" width="280" height="110" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

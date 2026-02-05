@@ -1,0 +1,159 @@
+<mxfile host="app.diagrams.net" modified="2026-02-04T00:00:00.000Z" agent="Claude" version="21.0.0">
+  <diagram name="C4-L2-Containers" id="containers">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;Diagrama de Contenedores (C4 - Nivel 2)&lt;/b&gt;&lt;br&gt;Sistema LeapCode - Arquitectura de Contenedores" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="600" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- User -->
+        <mxCell id="user" value="&lt;b&gt;Usuario&lt;/b&gt;&lt;br&gt;[Person]&lt;br&gt;&lt;br&gt;Estudiante practicando&lt;br&gt;programación" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#08427B;strokeColor=#052E56;fontColor=#FFFFFF;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="80" y="300" width="80" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- System Boundary -->
+        <mxCell id="system-boundary" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#1168BD;strokeWidth=3;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="140" width="1080" height="680" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="system-label" value="&lt;b&gt;Sistema LeapCode&lt;/b&gt;&lt;br&gt;[Software System]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=14;fontColor=#1168BD;" vertex="1" parent="1">
+          <mxGeometry x="260" y="150" width="200" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Web Application (React Frontend) -->
+        <mxCell id="container-frontend" value="&lt;b&gt;Web Application&lt;/b&gt;&lt;br&gt;[Container: React SPA]&lt;br&gt;&lt;br&gt;Single Page Application que provee la interfaz de usuario. Incluye:&lt;br&gt;• Editor de código (Monaco Editor)&lt;br&gt;• Lista de problemas&lt;br&gt;• Página de compilador en línea&lt;br&gt;• Dashboard de resultados&lt;br&gt;&lt;br&gt;Tecnologías: React 18, JavaScript, Axios, React Router" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#FFFFFF;fontSize=11;align=left;verticalAlign=top;spacing=15;" vertex="1" parent="1">
+          <mxGeometry x="280" y="240" width="320" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- API Application (Flask Backend) -->
+        <mxCell id="container-backend" value="&lt;b&gt;API Application&lt;/b&gt;&lt;br&gt;[Container: Flask API]&lt;br&gt;&lt;br&gt;Aplicación backend que expone API RESTful. Responsabilidades:&lt;br&gt;• Gestión de problemas&lt;br&gt;• Orquestación de ejecución de código&lt;br&gt;• Validación de soluciones&lt;br&gt;• Manejo de test cases&lt;br&gt;&lt;br&gt;Tecnologías: Flask 2.x, Python 3.9, Gunicorn, Docker SDK" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#FFFFFF;fontSize=11;align=left;verticalAlign=top;spacing=15;" vertex="1" parent="1">
+          <mxGeometry x="680" y="240" width="320" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Code Execution Engine -->
+        <mxCell id="container-execution" value="&lt;b&gt;Code Execution Engine&lt;/b&gt;&lt;br&gt;[Container: Docker Containers]&lt;br&gt;&lt;br&gt;Contenedores Docker efímeros para ejecución segura de código de usuario. Características:&lt;br&gt;• Aislamiento completo (namespaces)&lt;br&gt;• Límites de recursos (CPU, RAM)&lt;br&gt;• Timeout de 10 segundos&lt;br&gt;• Sin acceso a red&lt;br&gt;• Filesystem read-only&lt;br&gt;&lt;br&gt;Imágenes: python:3.9-slim, node:18-slim" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#FFFFFF;fontSize=11;align=left;verticalAlign=top;spacing=15;" vertex="1" parent="1">
+          <mxGeometry x="680" y="540" width="320" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Reverse Proxy (Nginx) -->
+        <mxCell id="container-nginx" value="&lt;b&gt;Reverse Proxy&lt;/b&gt;&lt;br&gt;[Container: Nginx]&lt;br&gt;&lt;br&gt;Servidor web que actúa como punto de entrada único:&lt;br&gt;• Ruteo de requests&lt;br&gt;• Load balancing&lt;br&gt;• SSL termination&lt;br&gt;• Serving de static assets&lt;br&gt;• Configuración CORS&lt;br&gt;&lt;br&gt;Tecnología: Nginx Alpine" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#FFFFFF;fontSize=11;align=left;verticalAlign=top;spacing=15;" vertex="1" parent="1">
+          <mxGeometry x="280" y="540" width="320" height="240" as="geometry" />
+        </mxCell>
+
+        <!-- Data Store (Future) -->
+        <mxCell id="container-database" value="&lt;b&gt;Database&lt;/b&gt;&lt;br&gt;[Container: PostgreSQL - FUTURO]&lt;br&gt;&lt;br&gt;Base de datos relacional para persistencia de:&lt;br&gt;• Usuarios y autenticación&lt;br&gt;• Soluciones enviadas&lt;br&gt;• Historial de ejecuciones&lt;br&gt;• Rankings y estadísticas&lt;br&gt;&lt;br&gt;Tecnología: PostgreSQL 15" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#333333;fontSize=11;align=left;verticalAlign=top;spacing=15;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="390" width="220" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Relationships -->
+        
+        <!-- User -> Nginx -->
+        <mxCell id="edge-user-nginx" value="Visita leapcode.vercel.app&lt;br&gt;usando navegador web&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="user" target="container-nginx">
+          <mxGeometry x="-0.1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Nginx -> Frontend -->
+        <mxCell id="edge-nginx-frontend" value="Sirve contenido estático&lt;br&gt;(HTML, CSS, JS)&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="container-nginx" target="container-frontend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Nginx -> Backend -->
+        <mxCell id="edge-nginx-backend" value="Proxy de requests /api/*&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="container-nginx" target="container-backend">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="600" />
+              <mxPoint x="640" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Frontend -> Backend -->
+        <mxCell id="edge-frontend-backend" value="Hace llamadas API&lt;br&gt;(GET /api/problems,&lt;br&gt;POST /api/execute)&lt;br&gt;[JSON/HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="container-frontend" target="container-backend">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend -> Execution Engine -->
+        <mxCell id="edge-backend-execution" value="Crea contenedores,&lt;br&gt;ejecuta código,&lt;br&gt;obtiene resultados&lt;br&gt;[Docker API]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;" edge="1" parent="1" source="container-backend" target="container-execution">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend -> Database (Future) -->
+        <mxCell id="edge-backend-database" value="Lee/Escribe datos&lt;br&gt;[SQL/TCP]&lt;br&gt;(FUTURO)" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#666666;strokeColor=#CCCCCC;strokeWidth=2;dashed=1;" edge="1" parent="1" source="container-backend" target="container-database">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- External: Docker Hub -->
+        <mxCell id="external-dockerhub" value="&lt;b&gt;Docker Hub&lt;/b&gt;&lt;br&gt;[External Container Registry]&lt;br&gt;&lt;br&gt;Repositorio de imágenes&lt;br&gt;oficiales Python y Node.js" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=11;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="620" width="220" height="120" as="geometry" />
+        </mxCell>
+
+        <!-- Execution -> Docker Hub -->
+        <mxCell id="edge-execution-dockerhub" value="Pull de imágenes&lt;br&gt;[HTTPS]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontSize=10;fontColor=#000000;strokeColor=#707070;strokeWidth=2;dashed=1;" edge="1" parent="1" source="container-execution" target="external-dockerhub">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Technology Stack Legend -->
+        <mxCell id="legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="40" y="500" width="160" height="320" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="legend-title" value="&lt;b&gt;STACK TECNOLÓGICO&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="50" y="510" width="140" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-frontend" value="&lt;b&gt;Frontend:&lt;/b&gt;&lt;br&gt;• React 18&lt;br&gt;• Monaco Editor&lt;br&gt;• Axios&lt;br&gt;• React Router" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-backend" value="&lt;b&gt;Backend:&lt;/b&gt;&lt;br&gt;• Flask 2.x&lt;br&gt;• Python 3.9&lt;br&gt;• Docker SDK&lt;br&gt;• Gunicorn" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="620" width="140" height="70" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-infra" value="&lt;b&gt;Infraestructura:&lt;/b&gt;&lt;br&gt;• Docker Engine&lt;br&gt;• Nginx&lt;br&gt;• Docker Compose" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="700" width="140" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="legend-deploy" value="&lt;b&gt;Deployment:&lt;/b&gt;&lt;br&gt;• Vercel (Frontend)&lt;br&gt;• Docker Host (Backend)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="50" y="770" width="140" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- Key Characteristics -->
+        <mxCell id="characteristics-box" value="&lt;b&gt;Características Clave:&lt;/b&gt;&lt;br&gt;&lt;br&gt;• &lt;b&gt;Stateless API:&lt;/b&gt; Backend sin estado para escalabilidad horizontal&lt;br&gt;&lt;br&gt;• &lt;b&gt;Contenedores Efímeros:&lt;/b&gt; Creados y destruidos por ejecución&lt;br&gt;&lt;br&gt;• &lt;b&gt;Aislamiento de Seguridad:&lt;/b&gt; Docker namespaces y cgroups&lt;br&gt;&lt;br&gt;• &lt;b&gt;Separación Frontend/Backend:&lt;/b&gt; Desarrollo y deploy independientes&lt;br&gt;&lt;br&gt;• &lt;b&gt;Single Entry Point:&lt;/b&gt; Nginx como reverse proxy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1F5FE;strokeColor=#0277BD;align=left;verticalAlign=top;fontSize=10;spacing=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="140" width="160" height="320" as="geometry" />
+        </mxCell>
+
+        <!-- Container Types Legend -->
+        <mxCell id="container-legend-box" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#CCCCCC;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="140" width="220" height="210" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="container-legend-title" value="&lt;b&gt;TIPOS DE CONTENEDORES&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1070" y="150" width="200" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="container-legend-active" value="&lt;b&gt;Contenedor Activo&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#438DD5;strokeColor=#2E6295;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="180" width="180" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="container-legend-future" value="&lt;b&gt;Planificado (Futuro)&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#CCCCCC;strokeColor=#999999;fontColor=#333333;fontSize=10;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="220" width="180" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="container-legend-external" value="&lt;b&gt;Sistema Externo&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#999999;strokeColor=#666666;fontColor=#FFFFFF;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="260" width="180" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="container-legend-note" value="&lt;b&gt;Nota:&lt;/b&gt; Los contenedores de ejecución de código son efímeros - se crean bajo demanda y se destruyen después de cada ejecución." style="text;html=1;strokeColor=none;fillColor=#FFF4E6;align=left;verticalAlign=top;whiteSpace=wrap;rounded=1;fontSize=9;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="1070" y="300" width="200" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
