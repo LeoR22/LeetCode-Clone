@@ -1,0 +1,17 @@
+#growth {
+    
+    overflow-y: scroll;
+   }
+
+   .shadowEffect {
+
+    box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.692), 0 6px 20px 0 rgba(0, 0, 0, 0.386);
+    border-radius: 1%;
+    border-color: green;
+  }
+
+  .outputarea{
+    background: rgb(86, 86, 86);
+    color: aliceblue;
+
+  }

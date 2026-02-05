@@ -1,0 +1,6 @@
+{"num1":12,"num2":5,"output":17}
+{"num1":-10,"num2":4,"output":-6}
+{"num1":22,"num2":1,"output":23}
+{"num1":1000,"num2":1,"output":1001}
+{"num1":5000,"num2":0,"output":5000}
+	

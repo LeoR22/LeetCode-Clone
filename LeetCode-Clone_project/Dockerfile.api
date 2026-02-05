@@ -1,0 +1,17 @@
+#This Dockerfile builds the API only.
+
+FROM python:3.9 
+WORKDIR /app
+
+COPY  api/. ./
+#RUN is an image build step, the state of the container after a RUN command will be committed to the container image. A Dockerfile can have many RUN steps that layer on top of one another to build the image.
+RUN pip install -r ./requirements.txt
+
+#FLAG AS PRODUCTION
+#ENV FLASK_ENV production
+
+EXPOSE 5000
+#CMD is the command the container executes by default when you launch the built image OR .yml file.
+CMD ["gunicorn","-b",":5000","api:app"]
+
+
